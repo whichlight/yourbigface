@@ -38,7 +38,7 @@ var initCam = function(){
           centerCanvas();
 
           ctx.beginPath();
-          ctx.arc(canvas.width/2,canvas.height/2,150,0,Math.PI*2,true);
+          ctx.arc(canvas.width/2,canvas.height/2,200,0,Math.PI*2,true);
           ctx.clip();
 
 
