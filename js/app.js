@@ -36,12 +36,20 @@ var initCam = function(){
 
         (function draw() {
           centerCanvas();
+
+          ctx.beginPath();
+          ctx.arc(canvas.width/2,canvas.height/2,150,0,Math.PI*2,true);
+          ctx.clip();
+
+
           ctx.save();
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
           drawVideo();
           ctx.restore();
-          drawing = requestAnimationFrame(draw);
+
+
+                 drawing = requestAnimationFrame(draw);
         })();
       },
       function(err) {
