@@ -41,7 +41,6 @@ var initCam = function(){
           ctx.arc(canvas.width/2,canvas.height/2,200,0,Math.PI*2,true);
           ctx.clip();
 
-
           ctx.save();
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
@@ -49,7 +48,7 @@ var initCam = function(){
           ctx.restore();
 
 
-                 drawing = requestAnimationFrame(draw);
+          drawing = requestAnimationFrame(draw);
         })();
       },
       function(err) {
@@ -79,10 +78,8 @@ var resizeCanvas = function(){
 
 var drawVideo = function(){
   try {
-  ctx.globalCompositeOperation = 'source-in';
-
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-//    processImage();
+    //    processImage();
 
   } catch (e) {
     if (e.name == "NS_ERROR_NOT_AVAILABLE") {
@@ -100,19 +97,19 @@ var processImage = function(){
     for (j = 0; j < canvas.height; j++) {
       //you can process individual pixels here
       var index = (j*canvas.width+i)*4
-          if(maskData[index]==0){
-              var r = pixData[index];
-              var g = pixData[index+1];
-              var b = pixData[index+2];
-              var alpha = pixData[index+3];
-          }
-          else{
-              pixData[index]=0;
-              pixData[index+1]=0;
-              pixData[index+2]=0;
-              pixData[index+3]=0;
+        if(maskData[index]==0){
+          var r = pixData[index];
+          var g = pixData[index+1];
+          var b = pixData[index+2];
+          var alpha = pixData[index+3];
+        }
+        else{
+          pixData[index]=0;
+          pixData[index+1]=0;
+          pixData[index+2]=0;
+          pixData[index+3]=0;
 
-          }
+        }
     }
   }
   pixels.data = pixData;
