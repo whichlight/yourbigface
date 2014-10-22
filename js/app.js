@@ -8,6 +8,32 @@ mask_img.src = "img/FaceMapMask.png";
 var mask = document.createElement('canvas');
 var maskPixels= ctx.getImageData(0, 0, mask.width, mask.height);
 var maskData = maskPixels.data;
+var points = [];
+
+var drawn = "false";
+
+
+var w = canvas.width/2;
+var h = canvas.height/2;
+
+/*
+points.push([w + 100, h]);
+points.push([w, h + 100]);
+points.push([w - 100, h ]);
+points.push([w , h - 100]);
+points.push([w +100 , h]);
+*/
+
+$('#selfie').mousedown(function(e){
+  var x = e.pageX - this.offsetLeft;
+  var y = e.pageY - this.offsetTop;
+  console.log(x + ',' + y);
+  points.push([x,y]);
+});
+
+var distance = function(x,y){
+  return Math.sqrt(Math.pow((x[1]-y[1]),2) + Math.pow(x[0]-y[0],2));
+}
 
 var initCam = function(){
   navigator.getMedia = ( navigator.getUserMedia ||
@@ -35,17 +61,40 @@ var initCam = function(){
         video.play();
 
         (function draw() {
+
           centerCanvas();
 
-          ctx.beginPath();
-          ctx.arc(canvas.width/2,canvas.height/2,200,0,Math.PI*2,true);
-          ctx.clip();
+
+         if(drawn){
+
+           ctx.rect(0,0,canvas.width,canvas.height);
+           ctx.fillStyle="black";
+           ctx.fill();
+         }
+
+          if(points.length>4){
+            console.log(distance(points[0], points[points.length-1]));
+            if(distance(points[0], points[points.length-1])<20){
+            drawn = "true";
+            ctx.beginPath();
+            //ctx.moveTo(w, h);
+
+            points.forEach(function(p){
+              ctx.lineTo(p[0],p[1]);
+            });
+
+            ctx.closePath();
+            ctx.fill();
+            ctx.clip();
+           }
+          }
 
           ctx.save();
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
           drawVideo();
           ctx.restore();
+
 
 
           drawing = requestAnimationFrame(draw);
