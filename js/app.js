@@ -3,11 +3,7 @@ var ctx = canvas.getContext('2d');
 var video  = document.createElement('video');
 video.id="video";
 
-var mask_img = new Image();
-mask_img.src = "img/FaceMapMask.png";
-var mask = document.createElement('canvas');
-var maskPixels= ctx.getImageData(0, 0, mask.width, mask.height);
-var maskData = maskPixels.data;
+
 var points = [];
 
 var drawn = 0;
@@ -177,21 +173,7 @@ var processImage = function(){
   for (i = 0; i < canvas.width; i++) {
     for (j = 0; j < canvas.height; j++) {
       //you can process individual pixels here
-      var index = (j*canvas.width+i)*4
-        if(maskData[index]==0){
-          var r = pixData[index];
-          var g = pixData[index+1];
-          var b = pixData[index+2];
-          var alpha = pixData[index+3];
-        }
-        else{
-          pixData[index]=0;
-          pixData[index+1]=0;
-          pixData[index+2]=0;
-          pixData[index+3]=0;
-
-        }
-    }
+      }
   }
   pixels.data = pixData;
   ctx.putImageData(pixels, 0, 0);
