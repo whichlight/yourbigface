@@ -10,7 +10,8 @@ var maskPixels= ctx.getImageData(0, 0, mask.width, mask.height);
 var maskData = maskPixels.data;
 var points = [];
 
-var drawn = "false";
+var drawn = 0;
+var clipped = 0;
 
 
 var w = canvas.width/2;
@@ -23,6 +24,24 @@ points.push([w - 100, h ]);
 points.push([w , h - 100]);
 points.push([w +100 , h]);
 */
+
+/*
+$("body").keydown(function(e){
+  if(e.keyCode == 39){
+    console.log("bigger")
+    var t = $("#draggable").css("transform") + 0.1;
+    $("#draggable").css("transform", t);
+  }
+  if(e.keyCode == 37){
+    console.log("smaller")
+    var t = $("#draggable").css("transform") - 0.1;
+    $("#draggable").css("transform", t);
+
+  }
+});
+*/
+
+$( "#draggable" ).draggable();
 
 $('#selfie').mousedown(function(e){
   var x = e.pageX - this.offsetLeft;
@@ -67,33 +86,46 @@ var initCam = function(){
 
          if(drawn){
 
+           if(!clipped){
+             console.log('clipping');
            ctx.rect(0,0,canvas.width,canvas.height);
            ctx.fillStyle="black";
            ctx.fill();
+           ctx.beginPath();
+           points.forEach(function(p){
+             ctx.lineTo(p[0],p[1]);
+           });
+           ctx.closePath();
+           ctx.fill();
+           ctx.clip();
+           clipped = 1;
+           }
          }
 
-          if(points.length>4){
-            console.log(distance(points[0], points[points.length-1]));
-            if(distance(points[0], points[points.length-1])<20){
-            drawn = "true";
-            ctx.beginPath();
-            //ctx.moveTo(w, h);
 
-            points.forEach(function(p){
-              ctx.lineTo(p[0],p[1]);
-            });
-
-            ctx.closePath();
-            ctx.fill();
-            ctx.clip();
-           }
-          }
 
           ctx.save();
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
           drawVideo();
           ctx.restore();
+
+          if(!drawn){
+            if(points.length>4){
+
+              if(distance(points[0], points[points.length-1])<20){
+                drawn = "true";
+
+              }
+
+            }
+            points.forEach(function(p){
+              ctx.beginPath();
+              ctx.arc(p[0], p[1], 10, 0, 2 * Math.PI, false);
+              ctx.fillStyle = 'blue';
+              ctx.fill();
+            });
+          }
 
 
 
