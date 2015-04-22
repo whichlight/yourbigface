@@ -3,6 +3,9 @@ var ctx = canvas.getContext('2d');
 var video  = document.createElement('video');
 video.id="video";
 
+var hdwidth = 1920;
+var hdhieght = 1080;
+
 
 var points = [];
 
