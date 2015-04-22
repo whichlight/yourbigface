@@ -2,7 +2,12 @@ canvas{
     position:absolute;
     left:-1px;
     top:-1px;
+
+    /*for 90 deg rotation */
+  /*  transform: rotate(90deg);*/
 }
+
+
 
 body{
   background:black;
@@ -17,7 +22,9 @@ body{
   font-weight: 900;
   font-size: 50px;
   color: white;
-   transform: scale(0.6,0.6);
+
+   /* for 90 def rotation*/
+  transform: rotate(90deg) scale(0.4,0.4);
 }
 
 
