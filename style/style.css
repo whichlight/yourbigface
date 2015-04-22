@@ -14,6 +14,7 @@ body{
 }
 
 #draggable {
+  display:none;
   width: 150px;
   padding: 20px;
   background: transparent;

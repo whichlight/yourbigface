@@ -9,6 +9,7 @@ var hdhieght = 1080;
 
 var points = [];
 
+var playing = 0;
 var drawn = 0;
 var clipped = 0;
 
@@ -54,6 +55,7 @@ var distance = function(x,y){
 }
 
 var initCam = function(){
+  playing = 1;
   navigator.getMedia = ( navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
@@ -106,7 +108,9 @@ var initCam = function(){
           ctx.save();
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
-          drawVideo();
+          if(playing){
+            drawVideo();
+          }
           ctx.restore();
 
           if(!drawn){
@@ -136,6 +140,14 @@ var initCam = function(){
         alert("Oops! Some sort of error occured, refresh and try again.");
       }
   );
+
+
+  $(document).keydown(function(evt) {
+    if (evt.keyCode == 32) {
+      playing = 1 - playing;
+    }
+  });
+
 }
 
 var centerCanvas = function(){

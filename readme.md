@@ -14,6 +14,10 @@ Open the browser and go to `localhost:8000`
 
 Press ctrl+c to stop the server.
 
+## Play / Pause the Video
+
+Press spacebar to toggle between play and pause
+
 ## Updating the code
 
 Navigate to the home folder of the repo, and type
@@ -21,3 +25,8 @@ Navigate to the home folder of the repo, and type
 >`git pull origin master`
 
 and press enter. This updates the project with any changes made.
+
+
+### webcam resolution
+
+[some details on working with HD webcams](http://www.html5rocks.com/en/tutorials/getusermedia/intro/)
