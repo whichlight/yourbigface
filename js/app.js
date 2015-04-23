@@ -156,7 +156,7 @@ var initCam = function(){
 
 
   $(document).keydown(function(evt) {
-    if (evt.keyCode == 32) {
+    if (evt.keyCode == 13) {
       playing = 1 - playing;
     }
   });
