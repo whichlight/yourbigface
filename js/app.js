@@ -6,8 +6,8 @@ video.id="video";
 /* resolution of the feed
  * this is what you can change
  * */
-resWidth = 1280;
-resHeight = 720;
+resWidth = 1920;
+resHeight = 1080;
 
 
 
