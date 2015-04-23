@@ -3,8 +3,16 @@ var ctx = canvas.getContext('2d');
 var video  = document.createElement('video');
 video.id="video";
 
+/* resolution of the feed */
+
+resWidth = 1280;
+resHeight = 720;
+
 var hdwidth = 1920;
 var hdhieght = 1080;
+
+canvas.width = resWidth;
+canvas.height = resHeight;
 
 
 var points = [];
@@ -67,8 +75,13 @@ var initCam = function(){
 
   navigator.getMedia(
       {
-        video: true,
-        audio: false
+        "video": {
+          "mandatory" : {
+             "minWidth": resWidth,
+             "minHeight": resHeight
+              }
+            },
+         "audio": false
       },
       function(stream) {
         if (navigator.mozGetUserMedia) {
@@ -136,7 +149,8 @@ var initCam = function(){
         })();
       },
       function(err) {
-        console.log("An error occured! " + err);
+        console.log("An error occured! ");
+        console.log(err);
         alert("Oops! Some sort of error occured, refresh and try again.");
       }
   );
