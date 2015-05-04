@@ -5,12 +5,16 @@ video.id="video";
 
 /* resolution of the feed
  * this is what you can change
+ *
+ * */
 resWidth = 1280;
 resHeight = 720;
 
- * */
+/** kawan debugging res
+
 resWidth = 640;
 resHeight = 480;
+**/
 
 
 
@@ -161,6 +165,9 @@ var initCam = function(){
   $(document).keydown(function(evt) {
     if (evt.keyCode == 13) {
       playing = 1 - playing;
+      if(playing==0){
+        $("#download")[0].click();
+      }
     }
   });
 
@@ -210,6 +217,12 @@ var processImage = function(){
   ctx.putImageData(pixels, 0, 0);
 }
 
+var download = function(){
+  var dt = canvas.toDataURL();
+  this.href = dt;
+}
+
 $(document).ready(function(){
   initCam();
+  document.getElementById('download').addEventListener('click', download, false);
 });

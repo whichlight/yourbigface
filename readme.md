@@ -16,7 +16,8 @@ Press ctrl+c to stop the server.
 
 ## Play / Pause the Video
 
-Press spacebar to toggle between play and pause
+Press enter to toggle between play and pause
+When you pause it, it will save the frame.
 
 ## Updating the code
 

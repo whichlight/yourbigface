@@ -22,6 +22,7 @@ body{
   font-weight: 900;
   font-size: 50px;
   color: white;
+  visibility:hidden;
 
    /* for 90 def rotation
   transform: rotate(90deg) scale(0.4,0.4);
