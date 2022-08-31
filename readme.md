@@ -4,7 +4,12 @@
 
 Navigate to the home folder of the repo. This is where index.html is. Then
 write:
->`python -m SimpleHTTPServer`
+
+> `python3 -m http.server`
+
+NOTE: if you're running an old version of python, you can instead start the server with:
+
+> `python -m SimpleHTTPServer`
 
 and press enter. This starts a server on port 8000.
 
@@ -23,10 +28,9 @@ When you pause it, it will save the frame.
 
 Navigate to the home folder of the repo, and type
 
->`git pull origin master`
+> `git pull origin master`
 
 and press enter. This updates the project with any changes made.
-
 
 ### webcam resolution
 
